@@ -8,8 +8,15 @@ class Interfaz {
 
 	construirSelect() {
 		cotizador.obtenerMonedasAPI().then((monedas) => {
+			// Crear un select de opciones
+			const select = document.querySelector('#criptomoneda');
+			// iterar por los resultados de la api
 			for (const [ key, value ] of Object.entries(monedas.monedas.Data)) {
-				console.log(key);
+				// Añadir el Symbol y el Nombre como opciones
+				const opcion = document.createElement('option');
+				opcion.value = value.Symbol;
+				opcion.appendChild(document.createTextNode(value.CoinName));
+				select.appendChild(opcion);
 			}
 		});
 	}
